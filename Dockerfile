@@ -43,10 +43,10 @@ RUN \
   apk --no-cache upgrade && \
   apk add --no-cache openjdk8-jre-base git mercurial subversion openssh-client bash curl tini && \
 # download the zip file
-  curl --fail --location --silent --show-error "https://download.gocd.io/binaries/17.12.0-5626C/generic/go-agent-17.12.0-5626.zip" > /tmp/go-agent.zip && \
+  curl --fail --location --silent --show-error "https://download.gocd.io/binaries/17.12.0-5626/generic/go-agent-17.12.0-5626.zip" > /tmp/go-agent.zip && \
 # unzip the zip file into /go-agent, after stripping the first path prefix
   unzip /tmp/go-agent.zip -d / && \
-  mv go-agent-17.02 /go-agent && \
+  mv go-agent-17.12.0 /go-agent && \
   rm /tmp/go-agent.zip && \
   mkdir -p /docker-entrypoint.d
 
