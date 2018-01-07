@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM alpine:3.5
+FROM hypriot/rpi-alpine
 MAINTAINER Vitor Pellegrino <vitorp@gmail.com>
 
 LABEL gocd.version="17.02" \
