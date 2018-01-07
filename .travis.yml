@@ -1,0 +1,20 @@
+sudo: required
+services:
+  - docker
+languages: bash
+env:
+  - VERSION=v17.12.0
+script:
+  # prepare qemu
+  - docker run --rm --privileged multiarch/qemu-user-static:register --reset
+  # build image
+  - docker build -t pellegrino/gocd-agent-arm .
+  - >
+    if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
+      docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
+      docker tag pellegrino/gocd-agent-arm pellegrino/gocd-agent-arm:$VERSION
+      docker tag pellegrino/gocd-agent-arm pellegrino/gocd-agent-arm:latest
+      docker push pellegrino/gocd-agent-arm:$VERSION
+      docker push pellegrino/gocd-agent-arm:latest
+      docker push pellegrino/gocd-agent-arm
+    fi
